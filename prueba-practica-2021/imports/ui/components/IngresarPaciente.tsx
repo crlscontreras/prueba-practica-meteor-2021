@@ -147,7 +147,7 @@ export const IngresarPaciente = () => {
         </div>
         <div>
           <label htmlFor="" className="text-sm font-bold text-gray-600 block">
-            Region
+            Región
           </label>
           <select
             {...register("region", { required: true })}
