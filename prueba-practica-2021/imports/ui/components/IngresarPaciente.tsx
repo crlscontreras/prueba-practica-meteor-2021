@@ -27,7 +27,7 @@ export const IngresarPaciente = () => {
   const [isSafeToReset, setIsSafeToReset] = useState(false);
 
   useEffect(() => {
-    if (isSafeToReset) {
+    if (!isSafeToReset) {
       return;
     } else {
       console.log("reset");
@@ -37,7 +37,7 @@ export const IngresarPaciente = () => {
   }, [isSafeToReset]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    //console.log(data);
+    console.log(data);
     try {
       await PatientsCollection.insert({
         nombres: data.nombres,

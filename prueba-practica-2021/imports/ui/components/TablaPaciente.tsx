@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { FilaPaciente } from "./FilaPaciente";
 import { PatientsCollection } from "/imports/api/PatientsCollection";
