@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { PatientsCollection } from "/imports/api/PatientsCollection";
 import { RegionsCollection } from "/imports/api/RegionsCollection";
@@ -20,19 +20,37 @@ export const IngresarPaciente = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    PatientsCollection.insert({
-      nombres: data.nombres,
-      paterno: data.paterno,
-      materno: data.materno,
-      rut: formatRut(data.rut),
-      region: data.region,
-      comuna: data.comuna,
-    });
+  const [isSafeToReset, setIsSafeToReset] = useState(false);
+
+  useEffect(() => {
+    if (isSafeToReset) {
+      return;
+    } else {
+      console.log("reset");
+      reset(); // asynchronously reset the form values
+      setIsSafeToReset(false);
+    }
+  }, [isSafeToReset]);
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    //console.log(data);
+    try {
+      await PatientsCollection.insert({
+        nombres: data.nombres,
+        paterno: data.paterno,
+        materno: data.materno,
+        rut: formatRut(data.rut),
+        region: data.region,
+        comuna: data.comuna,
+      });
+      setIsSafeToReset(true);
+    } catch (e) {
+      // hacer algo con error
+    }
   };
 
   const regions = useTracker(() => RegionsCollection.find({}).fetch());
