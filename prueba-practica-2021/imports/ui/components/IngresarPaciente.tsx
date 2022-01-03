@@ -138,9 +138,13 @@ export const IngresarPaciente = () => {
             className="w-full p-2 border border-gray-300 rounded mt-1"
             onChange={(e) => setCurrentRegion(e.target.value)}
           >
-            <option value="">Seleccionar Region</option>
+            <option key={"id"} value="">
+              Seleccionar Region
+            </option>
             {regions.map((regions) => (
-              <option value={regions.region}>{regions.region}</option>
+              <option key={regions.region} value={regions.region}>
+                {regions.region}
+              </option>
             ))}
           </select>
           {errors.region?.type === "required" && (
@@ -157,10 +161,14 @@ export const IngresarPaciente = () => {
             id=""
             className="w-full p-2 border border-gray-300 rounded mt-1"
           >
-            <option value="">Seleccionar Comuna</option>
+            <option key={"id"} value="">
+              Seleccionar Comuna
+            </option>
             {regionesComunasFiltrado.map((regionesComunas) =>
               regionesComunas.comunas.map((comuna) => (
-                <option value={comuna}>{comuna}</option>
+                <option key={comuna} value={comuna}>
+                  {comuna}
+                </option>
               ))
             )}
           </select>
