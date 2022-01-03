@@ -22,11 +22,11 @@ Abrir http://localhost:3000 para ver en el navegador.
 
 ## Testing
 
-Para realizar el meteor test con mocha y chai (este es un test para la base de datos):
+Para realizar el test con mocha y chai (test simple que viene incluido con Meteor):
 
 ### `meteor test --driver-package meteortesting:mocha`
 
-Para realizar el test con Jest (este es un test simple solo en el frontend):
+Para realizar el test con Jest (no esta completado):
 
 ### `meteor npm test`
 
